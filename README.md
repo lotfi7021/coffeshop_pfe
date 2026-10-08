@@ -1,19 +1,24 @@
-# SelectCars — Plateforme E-commerce de Vente de Voitures
+# CoffeShop — Plateforme B2B de vente de Café & Machines à Café
 
 > Projet de Fin d'Études (PFE) — Licence
-> Application web de gestion et de vente en ligne de voitures (et de machines), développée avec **Laravel 10**.
+> Plateforme B2B de gestion des commandes et de vente de **café** et de **machines à café**, développée avec **Laravel 10**.
 
 ---
 
 ## 📖 Description
 
-**SelectCars** est une application web complète (Front-office + Back-office) permettant à un
-concessionnaire / showroom automobile de :
+**CoffeShop** est une plateforme B2B (Front-office + Back-office) permettant la vente et la gestion
+de **café** et de **machines à café** auprès de **fournisseurs / sociétés** (clients professionnels).
 
-- présenter son catalogue de véhicules aux visiteurs,
-- gérer ses marques, catégories, modèles et stocks,
-- gérer les commandes, les clients et les livraisons,
-- administrer l'ensemble du contenu depuis un tableau de bord sécurisé.
+L'application couvre l'ensemble du cycle commercial :
+
+- présentation du catalogue (café et machines à café),
+- gestion des produits, catégories, marques et modèles,
+- gestion du stock et des mouvements de stock,
+- prise et suivi des commandes (café et machines),
+- facturation (avec TVA) et livraison,
+- gestion des clients (sociétés) et des livreurs,
+- service après-vente (SAV / tickets de support).
 
 Le projet a été réalisé dans le cadre d'un stage de fin d'études de Licence.
 
@@ -21,27 +26,36 @@ Le projet a été réalisé dans le cadre d'un stage de fin d'études de Licence
 
 ## ✨ Fonctionnalités
 
-### 🛒 Front-office (partie publique / client)
+### 🛒 Front-office (partie publique)
 - Page d'accueil avec bannière (hero slider)
-- Catalogue de voitures par **marque** et **catégorie**
-- Fiche détaillée d'un produit (voiture)
-- Barre de **recherche** avec chargement des modèles en **AJAX** (`/getModels/{id}`)
-- Page **FAQ**
-- Formulaire de **contact** (`contact-US`)
-- Espace client (inscription / connexion / mot de passe oublié)
-- Gestion du panier et passage de **commande**
+- Catalogue de **café** et de **machines à café**
+- Fiche produit détaillée
+- **Recherche** (par marque, fourchette de prix) + filtre des modèles en **AJAX** (`/getModels/{id}`)
+- Page **FAQ** (FAQ et politique de vente)
+- Formulaire de **contact**
+- Authentification (login)
 
-### 🔐 Back-office (partie administration)
-- Authentification administrateur dédiée (`/admin`)
-- **Tableau de bord** (statistiques)
-- Gestion des **marques** et **catégories**
-- Gestion des **produits** (voitures) et des **machines**
-- Gestion des **stocks** (voitures et machines)
-- Gestion des **commandes** et de leur **détail** (lignes de commande)
-- Gestion des **machines** : marques, modèles, prix, stock
-- Gestion des **clients**
-- Gestion des **livreurs**
-- Gestion du **support**, de la **FAQ**, des **bannières** et des **paramètres** du site
+### 🔐 Back-office (espace professionnel — 3 rôles)
+Rôles : **Administrateur**, **Client** (société), **Livreur**.
+
+- Authentification dédiée (`/admin`)
+- **Tableau de bord** (statistiques : ventes café, ventes machines, support)
+- **Gestion Produit** : produits (café), catégories, marques
+- **Gestion Machine** : machines à café, marques de machines, modèles
+- **Stock** : mouvements de stock café et mouvements de stock machines
+- **Gestion des commandes** : commandes café **et** commandes machines
+  (référence, client, prix, TVA, date de livraison, livreur, état, paiement)
+- **Facturation** (facture + aperçu) pour les commandes café et machines
+- **Gestion Client** (sociétés : nom de la société, code TVA, adresse, téléphone…)
+- **Gestion Livreur**
+- **SAV / Supports** (tickets)
+- **Création des comptes**
+- **FAQ**, **Bannières**, **Contact**
+
+### 👤 Portail client
+- Consultation des listes de produits (café) et de machines
+- Passage de commandes (café et machines)
+- Ouverture d'un ticket **SAV**
 
 ---
 
@@ -53,7 +67,7 @@ Le projet a été réalisé dans le cadre d'un stage de fin d'études de Licence
 | Base de données  | MySQL                                              |
 | Front-end        | Blade, Bootstrap 5, Sass, HTML5, CSS3, JavaScript  |
 | Build / Bundler  | Vite (`laravel-vite-plugin`)                       |
-| Authentification | Laravel UI, Laravel Sanctum                        |
+| Authentification | Laravel UI, Laravel Sanctum, guard admin dédié    |
 | Tableaux         | Yajra Laravel DataTables                           |
 | HTTP Client      | Guzzle                                             |
 | Outils           | Composer, NPM, Artisan, Tinker                     |
@@ -69,10 +83,17 @@ selectcars_pfe/
 │   │   ├── Admin/          # Contrôleurs back-office (admin)
 │   │   ├── Auth/           # Authentification (Laravel UI)
 │   │   └── Front/          # Contrôleurs front-office
-│   └── Models/             # Modèles Eloquent (Produit, Marque, Commande...)
+│   └── Models/             # Modèles Eloquent
+│                           #  Produit, Categorie, Marque        (catalogue café)
+│                           #  Gestion_machine, MarqueMachine,
+│                           #  Model_machine                     (catalogue machines)
+│                           #  Commande, Detail_commande         (commandes café)
+│                           #  Commande_M, Detail_commandeM      (commandes machines)
+│                           #  Stock, stock_machine, Client, Livreur,
+│                           #  Support, Contact, Faq, Banner, Settings
 ├── database/
 │   ├── migrations/         # Schéma de la base de données
-│   └── seeders/            # Données de test
+│   └── seeders/            # Données de test (marques, catégories, comptes)
 ├── resources/
 │   └── views/
 │       ├── back/           # Vues du back-office
@@ -120,7 +141,7 @@ php artisan key:generate
 
 # 6. Configurer la base de données dans .env (DB_DATABASE=selectcars, ...)
 
-# 7. Exécuter les migrations (+ données de test si disponible)
+# 7. Exécuter les migrations (+ données de test)
 php artisan migrate --seed
 
 # 8. Compiler les assets
@@ -131,17 +152,18 @@ php artisan serve
 ```
 
 L'application sera accessible sur : `http://localhost:8000`
-L'administration sur : `http://localhost:8000/admin`
+L'espace professionnel (back-office) sur : `http://localhost:8000/admin`
 
 ---
 
-## 🗄️ Base de données
+## 🗄️ Base de données (principales tables)
 
-Le projet contient notamment les tables :
-`users`, `admins`, `clients`, `marques`, `categories`, `produits`,
-`commandes`, `detail_commandes`, `commande__m_s` (machines),
-`gestion_machines`, `marque_machines`, `model_machines`,
-`stocks`, `stock_machines`, `livreurs`, `supports`, `faqs`, `banners`, `contacts`, `settings`.
+`users`, `admins`, `clients`, `marques`, `categories`, `produits` (café),
+`marque_machines`, `model_machines`, `gestion_machines` (machines à café),
+`commandes`, `detail_commandes` (commandes café),
+`commande__m_s`, `detail_commande_m_s` (commandes machines),
+`stocks`, `stock_machines`, `gestion_pris` (tarifs), `livreurs`,
+`supports`, `faqs`, `banners`, `contacts`, `settings`.
 
 ---
 
