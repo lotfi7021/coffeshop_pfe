@@ -1,66 +1,158 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SelectCars — Plateforme E-commerce de Vente de Voitures
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> Projet de Fin d'Études (PFE) — Licence
+> Application web de gestion et de vente en ligne de voitures (et de machines), développée avec **Laravel 10**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📖 Description
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**SelectCars** est une application web complète (Front-office + Back-office) permettant à un
+concessionnaire / showroom automobile de :
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- présenter son catalogue de véhicules aux visiteurs,
+- gérer ses marques, catégories, modèles et stocks,
+- gérer les commandes, les clients et les livraisons,
+- administrer l'ensemble du contenu depuis un tableau de bord sécurisé.
 
-## Learning Laravel
+Le projet a été réalisé dans le cadre d'un stage de fin d'études de Licence.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## ✨ Fonctionnalités
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🛒 Front-office (partie publique / client)
+- Page d'accueil avec bannière (hero slider)
+- Catalogue de voitures par **marque** et **catégorie**
+- Fiche détaillée d'un produit (voiture)
+- Barre de **recherche** avec chargement des modèles en **AJAX** (`/getModels/{id}`)
+- Page **FAQ**
+- Formulaire de **contact** (`contact-US`)
+- Espace client (inscription / connexion / mot de passe oublié)
+- Gestion du panier et passage de **commande**
 
-## Laravel Sponsors
+### 🔐 Back-office (partie administration)
+- Authentification administrateur dédiée (`/admin`)
+- **Tableau de bord** (statistiques)
+- Gestion des **marques** et **catégories**
+- Gestion des **produits** (voitures) et des **machines**
+- Gestion des **stocks** (voitures et machines)
+- Gestion des **commandes** et de leur **détail** (lignes de commande)
+- Gestion des **machines** : marques, modèles, prix, stock
+- Gestion des **clients**
+- Gestion des **livreurs**
+- Gestion du **support**, de la **FAQ**, des **bannières** et des **paramètres** du site
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 🛠️ Technologies utilisées
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+| Catégorie        | Technologie                                        |
+|------------------|----------------------------------------------------|
+| Framework        | Laravel 10 (PHP >= 8.1)                            |
+| Base de données  | MySQL                                              |
+| Front-end        | Blade, Bootstrap 5, Sass, HTML5, CSS3, JavaScript  |
+| Build / Bundler  | Vite (`laravel-vite-plugin`)                       |
+| Authentification | Laravel UI, Laravel Sanctum                        |
+| Tableaux         | Yajra Laravel DataTables                           |
+| HTTP Client      | Guzzle                                             |
+| Outils           | Composer, NPM, Artisan, Tinker                     |
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 📂 Structure du projet
 
-## Code of Conduct
+```
+selectcars_pfe/
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── Admin/          # Contrôleurs back-office (admin)
+│   │   ├── Auth/           # Authentification (Laravel UI)
+│   │   └── Front/          # Contrôleurs front-office
+│   └── Models/             # Modèles Eloquent (Produit, Marque, Commande...)
+├── database/
+│   ├── migrations/         # Schéma de la base de données
+│   └── seeders/            # Données de test
+├── resources/
+│   └── views/
+│       ├── back/           # Vues du back-office
+│       ├── front/          # Vues du front-office
+│       └── layouts/        # Layouts (front & back)
+├── routes/
+│   ├── web.php             # Routes de l'application
+│   └── api.php
+├── public/                 # Point d'entrée + assets
+├── composer.json           # Dépendances PHP
+└── package.json            # Dépendances JS
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## ⚙️ Prérequis
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **PHP** >= 8.1
+- **Composer**
+- **Node.js** & **npm**
+- **MySQL**
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🚀 Installation
+
+> ⚠️ Les commandes ci-dessous ne sont **pas** exécutées automatiquement — à lancer manuellement.
+
+```bash
+# 1. Cloner le dépôt
+git clone https://github.com/lotfi7021/selectcars_pfe.git
+cd selectcars_pfe
+
+# 2. Installer les dépendances PHP
+composer install
+
+# 3. Installer les dépendances JS
+npm install
+
+# 4. Copier le fichier d'environnement
+cp .env.example .env
+
+# 5. Générer la clé d'application
+php artisan key:generate
+
+# 6. Configurer la base de données dans .env (DB_DATABASE=selectcars, ...)
+
+# 7. Exécuter les migrations (+ données de test si disponible)
+php artisan migrate --seed
+
+# 8. Compiler les assets
+npm run dev        # ou : npm run build
+
+# 9. Lancer le serveur
+php artisan serve
+```
+
+L'application sera accessible sur : `http://localhost:8000`
+L'administration sur : `http://localhost:8000/admin`
+
+---
+
+## 🗄️ Base de données
+
+Le projet contient notamment les tables :
+`users`, `admins`, `clients`, `marques`, `categories`, `produits`,
+`commandes`, `detail_commandes`, `commande__m_s` (machines),
+`gestion_machines`, `marque_machines`, `model_machines`,
+`stocks`, `stock_machines`, `livreurs`, `supports`, `faqs`, `banners`, `contacts`, `settings`.
+
+---
+
+## 👤 Auteur
+
+**Lotfi**
+Projet de Fin d'Études — Licence
+Dépôt : [https://github.com/lotfi7021/selectcars_pfe](https://github.com/lotfi7021/selectcars_pfe)
+
+---
+
+## 📄 Licence
+
+Projet académique réalisé dans un cadre pédagogique (PFE Licence).
