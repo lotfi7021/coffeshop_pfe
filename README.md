@@ -39,7 +39,7 @@ Le projet a été réalisé dans le cadre d'un stage de fin d'études de Licence
 Rôles : **Administrateur**, **Client** (société), **Livreur**.
 
 - Authentification dédiée (`/admin`)
-- **Tableau de bord** (statistiques : ventes café, ventes machines, support)
+- **Tableau de bord** : indicateurs clés (KPI) + rapports **BI (Metabase)** + calendrier des commandes
 - **Gestion Produit** : produits (café), catégories, marques
 - **Gestion Machine** : machines à café, marques de machines, modèles
 - **Stock** : mouvements de stock café et mouvements de stock machines
@@ -59,6 +59,22 @@ Rôles : **Administrateur**, **Client** (société), **Livreur**.
 
 ---
 
+## 📊 Business Intelligence (BI)
+
+Le tableau de bord intègre des **rapports d'analyse décisionnelle** fournis par **Metabase**
+(serveur BI, par défaut sur `http://localhost:3000`), affichés dans l'application via des `iframe` :
+
+- **Rapport café** — analyse des ventes / articles de café
+- **Rapport machine** — analyse des ventes de machines à café
+- **Rapport support** — suivi des tickets SAV
+- **Rapport du mois** — synthèse mensuelle
+
+En complément du BI, le tableau de bord affiche des **indicateurs clés (KPI)**
+(nombre d'articles café, nombre d'articles machines) et un **calendrier**
+(FullCalendar) des commandes et livraisons.
+
+---
+
 ## 🛠️ Technologies utilisées
 
 | Catégorie        | Technologie                                        |
@@ -70,6 +86,7 @@ Rôles : **Administrateur**, **Client** (société), **Livreur**.
 | Authentification | Laravel UI, Laravel Sanctum, guard admin dédié    |
 | Tableaux         | Yajra Laravel DataTables                           |
 | HTTP Client      | Guzzle                                             |
+| Business Intelligence | Metabase (rapports de décision embarqués)     |
 | Outils           | Composer, NPM, Artisan, Tinker                     |
 
 ---
