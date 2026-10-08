@@ -94,7 +94,7 @@ En complément du BI, le tableau de bord affiche des **indicateurs clés (KPI)**
 ## 📂 Structure du projet
 
 ```
-selectcars_pfe/
+coffeshop_pfe/
 ├── app/
 │   ├── Http/Controllers/
 │   │   ├── Admin/          # Contrôleurs back-office (admin)
@@ -141,8 +141,8 @@ selectcars_pfe/
 
 ```bash
 # 1. Cloner le dépôt
-git clone https://github.com/lotfi7021/selectcars_pfe.git
-cd selectcars_pfe
+git clone https://github.com/lotfi7021/coffeshop_pfe.git
+cd coffeshop_pfe
 
 # 2. Installer les dépendances PHP
 composer install
@@ -188,7 +188,7 @@ L'espace professionnel (back-office) sur : `http://localhost:8000/admin`
 
 **Lotfi**
 Projet de Fin d'Études — Licence
-Dépôt : [https://github.com/lotfi7021/selectcars_pfe](https://github.com/lotfi7021/selectcars_pfe)
+Dépôt : [https://github.com/lotfi7021/coffeshop_pfe](https://github.com/lotfi7021/coffeshop_pfe)
 
 ---
 
