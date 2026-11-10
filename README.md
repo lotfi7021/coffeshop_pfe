@@ -4,7 +4,7 @@ Projet de Fin d'Études (PFE) — Licence
 
 Plateforme **B2B** (front-office + back-office) de vente et de gestion de **café** et de **machines à café** à destination des **sociétés / fournisseurs** (clients professionnels), développée avec **Laravel 10**.
 
-> Remarque : le dossier local et le remote Git s'appellent encore `selectcars_pfe` (nom historique du projet). Le dépôt peut également être accessible via `coffeshop_pfe`.
+> Remarque : le dossier local s'appelle encore `selectcars_pfe` (nom historique du projet) et peut être renommé sans impact sur le code. Le dépôt GitHub s'appelle désormais `coffeshop_pfe`.
 
 ---
 
@@ -117,7 +117,7 @@ Les URLs des dashboards sont codées en dur dans les vues : adaptez-les à votre
 ## Structure du projet
 
 ```text
-selectcars_pfe/
+coffeshop_pfe/
 ├── app/
 │   ├── Http/
 │   │   ├── Controllers/
@@ -167,8 +167,8 @@ selectcars_pfe/
 
 ```bash
 # 1. Cloner le dépôt
-git clone https://github.com/lotfi7021/selectcars_pfe.git
-cd selectcars_pfe
+git clone https://github.com/lotfi7021/coffeshop_pfe.git
+cd coffeshop_pfe
 
 # 2. Installer les dépendances PHP
 composer install
@@ -307,6 +307,6 @@ Le projet contient les tests d'exemple générés par Laravel dans `tests/Unit` 
 
 **Lotfi** — Projet de Fin d'Études (Licence)
 
-Dépôt : [https://github.com/lotfi7021/selectcars_pfe](https://github.com/lotfi7021/selectcars_pfe)
+Dépôt : [https://github.com/lotfi7021/coffeshop_pfe](https://github.com/lotfi7021/coffeshop_pfe)
 
 Projet académique réalisé dans un cadre pédagogique (PFE Licence).
