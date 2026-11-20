@@ -24,6 +24,12 @@ class Commande extends Model
 ];
 
 // Dans App\Models\Commande.php
+// Dans App\Models\Commande.php
+
+// Dans App\Models\Commande.php
+
+// Dans App\Models\Commande.php
+
 
 public function detail_commandes() {
     return $this->hasMany(Detail_commande::class, 'id');
